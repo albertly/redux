@@ -1,4 +1,6 @@
 import React, { PropTypes } from 'react';
+import {connect} from 'react-redux';
+import * as courseActions from '../../actions/courseActions';
 
 class CoursesPage extends React.Component {
     constructor(props, context) {
@@ -13,7 +15,10 @@ class CoursesPage extends React.Component {
         this.onTitleChange = this.onTitleChange.bind(this);
        // this.onClickSave = this.onClickSave.bind(this);
 
-       this.onClickSave = (event) => { alert(`Saving ${this.state.course.title}`)};
+       this.onClickSave = (event) => { 
+           alert(`Saving ${this.state.course.title}`);
+           this.props.dispatch(courseActions.createCourse(this.state.course));
+        };
     }
 
     onTitleChange(event) {
@@ -38,4 +43,10 @@ class CoursesPage extends React.Component {
     }
 }
 
-export default CoursesPage;
+function mapStateToProps(state, ownProps) {
+    return {
+        courses: state.courses
+    };
+}
+
+export default connect(mapStateToProps)(CoursesPage);
