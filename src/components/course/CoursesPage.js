@@ -9,7 +9,8 @@ class CoursesPage extends React.Component {
 
         this.state = {
             course: {
-                title: ""
+                title: "",
+                watchHref: ""
             }
         };
 
@@ -36,7 +37,12 @@ class CoursesPage extends React.Component {
     }
 
     courseRow(course, index) {
-        return <div key={index}>{course.title}</div>;
+        return (
+                <div key={index}>
+                    <a href={course.watchHref}> {course.title}</a>
+                    <hr></hr>
+                </div>
+                );
     }
 
     render() {
