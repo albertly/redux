@@ -16,5 +16,5 @@ export function loadCourses() {
         }).catch(error => {
             throw(error);
         });
-    }
+    };
 }
