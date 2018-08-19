@@ -8,44 +8,7 @@ import {browserHistory} from 'react-router';
 class CoursesPage extends React.Component {
     constructor(props, context) {
         super(props, context);
-
-        this.state = {
-            course: {
-                title: "",
-                watchHref: ""
-            }
-        };
-
-        this.onTitleChange = this.onTitleChange.bind(this);
-        this.onClickSave = this.onClickSave.bind(this);
         this.redirectToAddCoursePage = this.redirectToAddCoursePage.bind(this);
-
-        this.setStateValues = value => {
-            const course = this.state.course;
-            course.title = value;
-            this.setState({
-                course: course
-            });    
-        };
-    }
-
-    onClickSave()  { 
-        //alert(`Saving ${this.state.course.title}`);
-        this.props.actions.createCourse(this.state.course);
-        this.setStateValues("");
-    }
-
-    onTitleChange(event) {
-        this.setStateValues(event.target.value);
-    }
-
-    courseRow(course, index) {
-        return (
-                <div key={index}>
-                    <a href={course.watchHref}> {course.title}</a>
-                    <hr></hr>
-                </div>
-                );
     }
 
     redirectToAddCoursePage() {
@@ -57,13 +20,11 @@ class CoursesPage extends React.Component {
 
         return ( 
             <div>
-                <h1> Courses </h1> 
+                <h1>Courses</h1> 
                 <input type="submit" value="Add Course"
-                        className="btn btn-primary" onClick={this.redirectToAddCoursePage} />  
-                <CourseList courses={courses} />
-                <h2>Add Course</h2>
-                    <input type="text" onChange={this.onTitleChange} value={this.state.course.title} />
-                    <input type="submit" value="Save" onClick={this.onClickSave} />           
+                        className="btn btn-primary" 
+                        onClick={this.redirectToAddCoursePage} />  
+                    <CourseList courses={courses} />                               
             </div>
         );
     }
